@@ -4,8 +4,28 @@
     <meta charset="UTF-8">
     <title>CSV Calculator</title>
 </head>
-    <body>
-        <h1>Did it work</h1>
+    <body style="background-color:aquamarine">
+        <h1>Welcome to the "Extreme CSV Calculator"</h1>
+        <form action="/">
+            <input type="submit" value="Return to Home Page"/>
+        </form>
+        <h5>{{message}}</h5>
+        <h3>What would you like learn about the data?</h3>
 
+        <form action="/get-mean">
+            <input type="submit" value="Calculate Mean"/>
+        </form>
+        <br/>
+        <form action="/get-std-deviation">
+            <input type="submit" value="Calculate Standard Deviation"/>
+        </form>
+        <br/>
+        <form action="/get-sum">
+            <input type="submit" value="Calculate Sum"/>
+        </form>
+        <br/>
+        <form action="/get-image">
+            <input type="submit" value="Png Visualization"/>
+        </form>
     </body>
 </html>
