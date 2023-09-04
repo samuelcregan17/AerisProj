@@ -1,5 +1,6 @@
 import os
 import tempfile
+from CsvData import *
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -14,9 +15,12 @@ def start_page():
         # get the file that was uploaded through the request
         data_file = request.files.get('inputCsv')
 
-        # save the file to the temp dir to access later
-        data_file.save(os.path.join(app.config['UPLOAD_FOLDER'],
-                                    data_file.filename))
+        # set the file path to the temp dir
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], data_file.filename)
+
+        # save the file to the temp dir and remember it in the app config to access later
+        data_file.save(filepath)
+        app.config['FULL_FILE_PATH'] = filepath;
 
         loaded_file_msg = "Loaded csv file name: " + data_file.filename
 
@@ -26,17 +30,29 @@ def start_page():
 
 @app.route('/get-mean')
 def get_mean():
-    return
+    data = CsvData(app.config['FULL_FILE_PATH'])
+    result = data.get_mean()
+    return render_template('StatisticalComputation.html',
+                           operation="Mean",
+                           result=result)
 
 
 @app.route('/get-std-deviation')
 def get_std_deviation():
-    return
+    data = CsvData(app.config['FULL_FILE_PATH'])
+    result = data.get_std_deviation()
+    return render_template('StatisticalComputation.html',
+                           operation="Standard Deviation",
+                           result=result)
 
 
 @app.route('/get-sum')
 def get_sum():
-    return
+    data = CsvData(app.config['FULL_FILE_PATH'])
+    result = data.get_sum()
+    return render_template('StatisticalComputation.html',
+                           operation="Sum",
+                           result=result)
 
 
 @app.route('/get-image')
