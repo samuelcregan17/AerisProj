@@ -1,12 +1,16 @@
 import os
 import tempfile
+from PIL import Image
 from CsvData import *
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# set up a temp dir that we can use to store input files
-app.config['UPLOAD_FOLDER'] = tempfile.gettempdir()
+# set up a temp dir that we can use to store input files and images
+TEMP_DIR = tempfile.gettempdir()
+
+UPLOAD_FOLDER = os.path.join("static", "uploads")
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -15,12 +19,22 @@ def start_page():
         # get the file that was uploaded through the request
         data_file = request.files.get('inputCsv')
 
+        # if previous call returned nothing, we know we're coming from the "back" button of one of the
+        # endpoint pages. No need to do anything to save the file because we already have it, so just
+        # grab the file name and return the file uploaded page.
+        if data_file is None:
+            filepath = app.config['FULL_FILE_PATH']
+            split = str.split(filepath, os.sep)
+            filename = split[len(split) - 1]
+            loaded_file_msg = "Loaded csv file name: " + filename
+            return render_template('FileUploaded.html', message=loaded_file_msg)
+
         # set the file path to the temp dir
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], data_file.filename)
+        filepath = os.path.join(app.config["UPLOAD_FOLDER"], data_file.filename)
 
         # save the file to the temp dir and remember it in the app config to access later
         data_file.save(filepath)
-        app.config['FULL_FILE_PATH'] = filepath;
+        app.config['FULL_FILE_PATH'] = filepath
 
         loaded_file_msg = "Loaded csv file name: " + data_file.filename
 
@@ -34,7 +48,8 @@ def get_mean():
     result = data.get_mean()
     return render_template('StatisticalComputation.html',
                            operation="Mean",
-                           result=result)
+                           result=result,
+                           confettiPath=os.path.join(os.getcwd(), "js", "confetti.js"))
 
 
 @app.route('/get-std-deviation')
@@ -57,4 +72,8 @@ def get_sum():
 
 @app.route('/get-image')
 def get_image():
-    return
+    data = CsvData(app.config['FULL_FILE_PATH'])
+    image = data.get_image()
+    img_filepath = os.path.join(app.config["UPLOAD_FOLDER"], "pngRepresentation.png")
+    image.save(img_filepath)
+    return render_template('PngRepresentation.html', img_filepath=img_filepath)

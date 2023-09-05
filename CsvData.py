@@ -1,6 +1,9 @@
 # This class performs the computational heavy lifting for the required csv operations.
+# This class assumes the input file is a csv and has already been validated at this point.
 import csv
 import statistics
+from PIL import Image as im
+import numpy
 
 
 class CsvData:
@@ -32,3 +35,21 @@ class CsvData:
 
     def get_sum(self):
         return sum(self.data_list)
+
+    def get_image(self):
+        # convert data to numpy array
+        array = numpy.array(self.data_list)
+        big_array = []
+
+        # normalize the data to fit inside the range 0 - 255 to be converted to a png
+        array_range = array.max() - array.min()
+        multiplier = 255 / array_range
+        for x in range(0, len(array) - 1):
+            array[x] = array[x] * multiplier
+            new = [array[x]] * 500
+            big_array.append(new)
+
+        big_array = numpy.array(big_array)
+        big_array = big_array.astype(numpy.uint8)
+        print(big_array)
+        return im.fromarray(big_array)
