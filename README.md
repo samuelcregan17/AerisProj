@@ -3,7 +3,7 @@
 The Advanced CSV Calculator or "ACC" is a web application built in Python using Flask Web Framework. The ACC takes a 
 *.csv file as an input file and performs four primary functions to help analyze the data in the file. The *.csv file
 must be configured correctly in order for the ACC to be able to parse the file. More detail on this configuration is 
-provided in the "Csv Configuration" section below, as well as general application workflow information.
+provided in the "CSV Configuration" section below. The ACC is deployed as a container using Docker.
 
 ## CSV Configuration
 The ACC only accepts files with the extension *.csv. There is really only one restriction for the ACC to parse a *.csv:
@@ -29,3 +29,18 @@ become 255, and all values in between will be adjusted accordingly to this norma
 converted to a PNG that is ordered from the TOP down in the order that the data is ordered in the data file. Each row of
 pixels in the resulting PNG corresponds to one data point. The maximum will correspond to the white bars, while the
 minimum corresponds to the black bars.
+
+## General Worflow
+When the user first starts the ACC, they will be greeted with the Home page. This page presents a pair of buttons that 
+are used to load the desired data file. First, press the choose file button, which will open the file dialog to choose
+a *.csv file (only *.csv files can be selected). Then, press the "Analyze" button to confirm the choice. If no file is 
+selected, or an invalid file is selected, the Analyze button will not do anything. After choosing to analyze a valid 
+data file, the Analysis page will appear. This page includes buttons which correspond to the functionality described in 
+the "Functions Provided" section. Pressing one of the analysis buttons will open another page that presents the result 
+of the analysis requested. From the Analysis page, the user can also choose to go back to the Home page if they wish to 
+upload a different data file. From each of the pages launched from the analysis buttons, the user can navigate back to 
+the main Analysis page by pressing the back button. The user can access this help page through the Help buttons in the 
+Home page and the Analysis page.
+
+### Third Party
+Credit for the confetti effect is given to Nicholas Suski from Codehim.com.
