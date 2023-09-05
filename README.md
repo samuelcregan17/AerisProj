@@ -30,7 +30,7 @@ converted to a PNG that is ordered from the TOP down in the order that the data 
 pixels in the resulting PNG corresponds to one data point. The maximum will correspond to the white bars, while the
 minimum corresponds to the black bars.
 
-## General Worflow
+## General Workflow
 When the user first starts the ACC, they will be greeted with the Home page. This page presents a pair of buttons that 
 are used to load the desired data file. First, press the choose file button, which will open the file dialog to choose
 a *.csv file (only *.csv files can be selected). Then, press the "Analyze" button to confirm the choice. If no file is 
