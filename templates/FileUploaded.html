@@ -2,44 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CSV Calculator</title>
-    <style>
-          html, body {
-                      height: 100%;
-                     }
-
-          html {
-                display: table;
-                margin: auto;
-               }
-
-          body {
-                display: table-cell;
-               }
-    </style>
+    <title>ACC</title>
 </head>
     <body style="background-color:aquamarine">
-        <h1>Welcome to the "Extreme CSV Calculator"</h1>
-        <form action="/">
-            <input type="submit" value="Return to Home Page"/>
+        <form action="/show-help">
+            <input type="submit" value="Help" />
         </form>
-        <h5>{{message}}</h5>
-        <h3>What would you like learn about the data?</h3>
+        <h1 align="center">Welcome to the "Advanced CSV Calculator"</h1>
+        <center>
+            <form action="/">
+                <input type="submit" value="Return to Home Page"/>
+            </form>
+        </center>
+        <h5 align="center">{{message}}</h5>
+        <h3 align="center">What would you like learn about the data?</h3>
 
-        <form action="/get-mean">
-            <input type="submit" value="Calculate Mean"/>
-        </form>
-        <br/>
-        <form action="/get-std-deviation">
-            <input type="submit" value="Calculate Standard Deviation"/>
-        </form>
-        <br/>
-        <form action="/get-sum">
-            <input type="submit" value="Calculate Sum"/>
-        </form>
-        <br/>
-        <form action="/get-image">
-            <input type="submit" value="Png Visualization"/>
-        </form>
+        <center>
+            <form action="/get-mean">
+                <input type="submit" value="Calculate Mean"/>
+            </form>
+            <br/>
+            <form action="/get-std-deviation">
+                <input type="submit" value="Calculate Standard Deviation"/>
+            </form>
+            <br/>
+            <form action="/get-sum">
+                <input type="submit" value="Calculate Sum"/>
+            </form>
+            <br/>
+            <form action="/get-image">
+                <input type="submit" value="Png Visualization"/>
+            </form>
+        </center>
     </body>
 </html>

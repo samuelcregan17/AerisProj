@@ -2,28 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>CSV Calculator</title>
+    <title>ACC</title>
       <style>
-          html, body {
-                      height: 100%;
-                     }
-
-          html {
-                display: table;
-                margin: auto;
-               }
-
-          body {
-                display: table-cell;
-               }
       </style>
   </head>
     <body style="background-color:aquamarine">
-      <h1>Welcome to the "Extreme CSV Calculator"</h1>
-      <h5>Choose a csv file to examine.</h5>
-      <form method="POST" enctype="multipart/form-data" action="/">
-        <input type="file" name="inputCsv" accept=".csv"/>
-        <input type="submit" value="Examine"/>
+      <form action="/show-help">
+        <input type="submit" value="Help" />
       </form>
+      <h1 align="center">Welcome to the "Advanced CSV Calculator"</h1>
+      <h5 align="center">Choose a csv file to examine.</h5>
+      <center>
+        <form method="POST" enctype="multipart/form-data" action="/">
+          <input align="center" type="file" name="inputCsv" accept=".csv"/>
+          <input align="center" type="submit" value="Examine"/>
+        </form>
+      </center>
     </body>
 </html>
