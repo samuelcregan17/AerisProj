@@ -1,6 +1,4 @@
 import os
-import tempfile
-from PIL import Image
 from CsvData import *
 from flask import Flask, render_template, request, redirect
 
