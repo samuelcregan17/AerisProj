@@ -50,7 +50,6 @@ class CsvData:
         and the highest value becomes 255."""
         # convert data to numpy array
         array = numpy.array(self.data_list)
-        print(array)
         big_array = []
 
         # normalize the data to fit inside the range 0 - 255 to be converted to a png

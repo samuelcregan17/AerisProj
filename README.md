@@ -3,7 +3,7 @@
 The Advanced CSV Calculator or "ACC" is a web application built in Python using Flask Web Framework. The ACC takes a 
 *.csv file as an input file and performs four primary functions to help analyze the data in the file. The *.csv file
 must be configured correctly in order for the ACC to be able to parse the file. More detail on this configuration is 
-provided in the "CSV Configuration" section below. The ACC is deployed as a container using Docker.
+provided in the "CSV Configuration" section below. The ACC can be built as a Docker image and containerized.
 
 ## CSV Configuration
 The ACC only accepts files with the extension *.csv. There is really only one restriction for the ACC to parse a *.csv:
